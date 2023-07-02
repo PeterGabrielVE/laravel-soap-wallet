@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['prefix' => 'api'], function () {
+    Route::post('/clientes', 'ClientController@create');
+    Route::post('/clientes/{id}/billetera/cargar', 'BilleteraController@charge');
+    Route::post('/clientes/{id}/billetera/comprar', 'BilleteraController@purchase');
+    Route::get('/clientes/{id}/billetera/saldo', 'BilleteraController@balance');
 });
